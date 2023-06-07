@@ -60,7 +60,7 @@ exports.login = async (req, res) => {
             });
         }
         //user available or not
-        const user = await User.findOne({email});
+        let user = await User.findOne({email});
         if(!user){
             return res.status(401).json({
                 success:false,
@@ -83,12 +83,11 @@ exports.login = async (req, res) => {
                                 {
                                     expiresIn: "2h"
                                 });
-            console.log(user);
+            
             //send the token in cookie
-            user.token = token;
-            console.log(user);
+            user = user.toObject();
+            user.token = token;          
             user.password =undefined;
-            console.log(user);
             //create a cookie
             const options = {
                 expiresIn: new Date(Date.now() + 3*24*60*60*1000),
