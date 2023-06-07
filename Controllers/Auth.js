@@ -90,15 +90,21 @@ exports.login = async (req, res) => {
             user.password =undefined;
             //create a cookie
             const options = {
-                expiresIn: new Date(Date.now() + 3*24*60*60*1000),
+                expiresIn: new Date(Date.now() + 3000),
                 httpOnly: true,   
             }
-            res.cookie("token", token, options).status(200).json({
-                success: true,
-                token,
-                user,
-                message:"User Logged in Successfully",
-            });
+             res.cookie("token", token, options).status(200).json({
+                 success: true,
+                 token,
+                 user,
+                 message:"User Logged in Successfully",
+             });
+            // res.status(200).json({
+            //     success: true,
+            //     token,
+            //     user,
+            //     message:"User Logged in Successfully",
+            // });
         }else{
             return res.status(402).json({
                 success:false,

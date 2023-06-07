@@ -6,21 +6,21 @@ router.post("/login", login);
 router.post("/signup", signup);
 
 //Testing protected Routes
-router.post("/test ", auth, (req, res) => {
+router.get("/test", auth, (req, res) => {
     res.json({
         success: true,
         message:"Welcome to Protected route for Testing ",
     });
 });
 //protected Routes
-router.post("/student ", auth, isStudent, (req, res) => {
+router.get("/student", auth, isStudent, (req, res) => {
     res.json({
         success: true,
         message:"Welcome to Protected route for students",
     });
 });
 //protected Routes
-router.post("/admin ", auth, isAdmin, (req, res) => {
+router.get("/admin", auth, isAdmin, (req, res) => {
     res.json({
         success: true,
         message:"Welcome to Protected route for Admin",
